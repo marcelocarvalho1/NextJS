@@ -1,4 +1,6 @@
-interface PostProps {
+import Link from "next/link";
+
+export interface PostProps {
   id: number;
   title: string;
   body: string;
@@ -61,6 +63,9 @@ export default async function PostsPage() {
           <div key={post.id} className="bg-amber-100 rounded-md p-4">
             <h2 className="text-sky-500 font-bold">{post.title}</h2>
             <p> {post.body}</p>
+            <Link className="text-blue-400" href={`/posts/${post.id}`}>
+            Ver detalhes do post
+            </Link>
           </div>
         ))}
       </div>
