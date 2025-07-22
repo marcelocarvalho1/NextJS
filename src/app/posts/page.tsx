@@ -11,8 +11,15 @@ interface ResponseProps {
   posts: PostProps[];
 }
 
+export const revalidate = 60;
+
 export default async function PostsPage() {
-  const response = await fetch("https://dummyjson.com/posts");
+  const response = await fetch("https://dummyjson.com/posts", {
+    cache: 'force-cache', // Usa sempre o cache, se disponível
+    next:{
+      revalidate: 6
+    }
+  });
   const data: ResponseProps = await response.json();
 
   async function handleFetchPosts() {
